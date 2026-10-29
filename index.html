@@ -1,0 +1,521 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>E-Portofolio PPL SPTLDV</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: kertas berpetak (grafik koordinat) sebagai hero, satu halaman bergulir dengan 5 bagian, kartu putih di atas latar biru-abu dingin. */
+:root {
+  --bg: #F1F5F8;
+  --surface: #FFFFFF;
+  --ink: #11283B;
+  --muted: #53687A;
+  --line: #D3DDE5;
+  --accent: #0B7A75;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DDF1EF;
+  --warm: #E8912A;
+  --warm-soft: #FCEBD0;
+  --grid: #DDE7ED;
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1923; --surface: #13283A; --ink: #E7EEF3; --muted: #9FB2C1; --line: #28424F;
+    --accent: #4FD1C5; --accent-ink: #08222A; --accent-soft: #123A41;
+    --warm: #F3B058; --warm-soft: #3A2E17; --grid: #17303F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C1923; --surface: #13283A; --ink: #E7EEF3; --muted: #9FB2C1; --line: #28424F;
+  --accent: #4FD1C5; --accent-ink: #08222A; --accent-soft: #123A41;
+  --warm: #F3B058; --warm-soft: #3A2E17; --grid: #17303F;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.6;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 30; background: var(--surface);
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--warm); outline-offset: 3px; border-radius: 6px; }
+
+.wrap {
+  max-width: 1120px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.mono { font-family: var(--font-mono); font-weight: 500; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: 12.5px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent); font-weight: 700;
+}
+
+/* Navigasi */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 58px; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 18px; text-decoration: none; white-space: nowrap; }
+.brand span { color: var(--accent); }
+.nav { display: flex; gap: 4px; overflow-x: auto; min-width: 0; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a {
+  text-decoration: none; font-weight: 600; font-size: 15px; padding: 8px 14px;
+  border-radius: 999px; color: var(--muted); white-space: nowrap;
+}
+.nav a:hover { background: var(--accent-soft); color: var(--accent); }
+
+/* Hero */
+.hero {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  border-bottom: 1px solid var(--line);
+}
+.hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; padding-block: 64px; }
+.hero-copy { min-width: 0; display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.hero h1 { font-size: clamp(2.2rem, 5.4vw, 3.9rem); font-weight: 800; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lead { font-size: 19px; color: var(--muted); max-width: 52ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+  font-weight: 700; font-size: 16px; padding: 12px 20px; border-radius: 10px;
+  border: 2px solid var(--accent); transition: transform .15s ease, background .15s ease;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: var(--surface); color: var(--accent); }
+.btn:hover { transform: translateY(-2px); }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; padding-top: 6px; }
+.stats div { display: flex; flex-direction: column; }
+.stats b { font-family: var(--font-display); font-size: 28px; font-weight: 800; line-height: 1.1; }
+.stats span { font-size: 14px; color: var(--muted); }
+
+.plane {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 14px; min-width: 0;
+}
+.plane svg { display: block; width: 100%; height: auto; }
+.plane figcaption { font-size: 14px; color: var(--muted); padding: 8px 6px 2px; }
+.plane figcaption b { color: var(--ink); font-family: var(--font-mono); font-weight: 700; }
+.ax { stroke: var(--ink); stroke-width: 1.6; fill: none; }
+.tick { fill: var(--muted); font: 500 10px var(--font-mono); }
+.gl { stroke: var(--grid); stroke-width: 1; }
+.lineA { stroke: var(--accent); stroke-width: 2.4; fill: none; }
+.lineB { stroke: var(--warm); stroke-width: 2.4; fill: none; stroke-dasharray: 7 5; }
+.region { fill: var(--accent); fill-opacity: 0.2; }
+.lbl { font: 700 12px var(--font-mono); }
+.lblA { fill: var(--accent); }
+.lblB { fill: var(--warm); }
+.dot { fill: var(--ink); }
+.dotlbl { fill: var(--ink); font: 500 10.5px var(--font-mono); }
+
+/* Bagian */
+section.block { padding-block: 72px; scroll-margin-top: calc(58px + env(safe-area-inset-top, 0px)); }
+section.alt { background: var(--surface); border-block: 1px solid var(--line); }
+.head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; max-width: 62ch; }
+.head h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); font-weight: 800; }
+.head p { color: var(--muted); }
+
+/* Profil */
+.profile { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 28px; align-items: start; }
+.id-card {
+  background: var(--accent); color: var(--accent-ink); border-radius: 18px;
+  padding: 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0;
+}
+.avatar {
+  width: 76px; height: 76px; border-radius: 20px; display: grid; place-items: center;
+  background: var(--accent-ink); color: var(--accent); font: 800 30px var(--font-display);
+}
+.id-card h3 { font-size: 26px; }
+.id-card .nim { font-family: var(--font-mono); font-size: 15px; opacity: .9; }
+.facts { display: grid; gap: 14px; min-width: 0; }
+.fact {
+  display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: baseline;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px;
+}
+.fact dt { font-family: var(--font-mono); font-size: 12.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.fact dd { margin: 0; font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.facts dl { margin: 0; display: grid; gap: 10px; }
+
+/* Kartu dokumen & video */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  padding: 26px; display: flex; flex-direction: column; gap: 14px; min-width: 0;
+}
+section.alt .card { background: var(--bg); }
+.tag {
+  align-self: flex-start; font: 700 12.5px var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+  background: var(--accent-soft); color: var(--accent); padding: 5px 11px; border-radius: 999px;
+}
+.card h3 { font-size: 22px; font-weight: 700; }
+.card p { color: var(--muted); font-size: 16px; flex: 1; }
+.card .btn { align-self: flex-start; padding: 10px 16px; font-size: 15px; }
+.symbol {
+  font: 700 26px var(--font-mono); color: var(--warm); background: var(--warm-soft);
+  width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center;
+}
+.channel {
+  margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; justify-content: space-between;
+  background: var(--warm-soft); border-radius: 14px; padding: 18px 22px;
+}
+.channel p { font-weight: 600; overflow-wrap: anywhere; }
+.channel .btn { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+
+/* Refleksi */
+.path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: end; margin-bottom: 56px; }
+.step {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px;
+  display: flex; flex-direction: column; gap: 8px; position: relative; min-width: 0;
+}
+.step:nth-child(1) { margin-top: 64px; }
+.step:nth-child(2) { margin-top: 32px; }
+.step:nth-child(3) { border-color: var(--accent); }
+.step .tag { background: var(--warm-soft); color: var(--warm); }
+.step h3 { font-size: 20px; }
+.step p { color: var(--muted); font-size: 15.5px; }
+.step + .step::before {
+  content: "\2192"; position: absolute; left: -19px; top: 22px; width: 16px;
+  font: 700 18px var(--font-mono); color: var(--accent);
+}
+
+.cycle { margin-bottom: 44px; }
+.cycle-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin-bottom: 16px; }
+.cycle-head h3 { font-size: 26px; font-weight: 800; }
+.star { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.cell {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px 22px; display: grid; grid-template-columns: 44px 1fr; gap: 6px 16px; min-width: 0;
+}
+section.alt .cell { background: var(--bg); }
+.cell .k {
+  grid-row: span 2; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  font: 800 22px var(--font-display); background: var(--accent); color: var(--accent-ink);
+}
+.cell:nth-child(3) .k { background: var(--warm); color: #1A1204; }
+.cell h4 { margin: 0; font: 700 13px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); align-self: end; }
+.cell p { font-size: 16px; grid-column: 2; }
+
+.summary {
+  background: var(--ink); color: var(--bg); border-radius: 18px; padding: 32px;
+  display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 28px;
+}
+.summary h3 { font-size: 26px; }
+.summary ul { margin: 0; padding-left: 20px; display: grid; gap: 10px; }
+.summary li::marker { color: var(--warm); }
+
+footer { background: var(--ink); color: var(--bg); padding-block: 36px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font-size: 15px; }
+footer b { font-family: var(--font-display); font-size: 17px; }
+footer span { opacity: .75; }
+
+@media (max-width: 900px) {
+  .hero .wrap, .profile, .summary { grid-template-columns: 1fr; }
+  .hero .wrap { padding-block: 44px; gap: 28px; }
+  .cards, .path { grid-template-columns: 1fr; }
+  .step:nth-child(n) { margin-top: 0; }
+  .step + .step::before { content: "\2193"; left: 22px; top: -22px; }
+  .path { gap: 28px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  section.block { padding-block: 52px; }
+  .star { grid-template-columns: 1fr; }
+  .fact { grid-template-columns: 1fr; gap: 2px; }
+  .brand { display: none; }
+  .nav { margin-inline: -4px; }
+  .summary { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
+}
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#beranda">PPL<span>.</span>SPTLDV</a>
+    <nav class="nav" aria-label="Navigasi utama">
+      <a href="#beranda">Beranda</a>
+      <a href="#profil">Profil</a>
+      <a href="#dokumen">Dokumen</a>
+      <a href="#video">Video</a>
+      <a href="#refleksi">Refleksi</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="beranda" style="scroll-margin-top: calc(58px + env(safe-area-inset-top, 0px));">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">E-Portofolio · Praktik Mengajar Mandiri</p>
+        <h1>Sistem Pertidaksamaan <em>Linear Dua Variabel</em></h1>
+        <p class="lead">Laporan tiga siklus mengajar di SMA Muhammadiyah 3 Jember: dari materi prasyarat, materi inti, sampai penerapan kontekstual.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#dokumen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+            Lihat Dokumen
+          </a>
+          <a class="btn btn-ghost" href="#video">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Tonton Video
+          </a>
+        </div>
+        <div class="stats">
+          <div><b>3</b><span>Siklus mengajar</span></div>
+          <div><b>3</b><span>Modul ajar</span></div>
+          <div><b>3</b><span>Video pelaksanaan</span></div>
+        </div>
+      </div>
+
+      <figure class="plane" style="margin:0">
+        <svg viewBox="0 0 360 310" role="img" aria-label="Grafik daerah penyelesaian sistem x + y ≤ 7 dan y ≥ ½x pada bidang koordinat">
+          <!-- skala: 1 satuan = 35 px, titik asal (40,280) -->
+          <g>
+            <line class="gl" x1="75"  y1="30" x2="75"  y2="280"/><line class="gl" x1="110" y1="30" x2="110" y2="280"/>
+            <line class="gl" x1="145" y1="30" x2="145" y2="280"/><line class="gl" x1="180" y1="30" x2="180" y2="280"/>
+            <line class="gl" x1="215" y1="30" x2="215" y2="280"/><line class="gl" x1="250" y1="30" x2="250" y2="280"/>
+            <line class="gl" x1="285" y1="30" x2="285" y2="280"/><line class="gl" x1="320" y1="30" x2="320" y2="280"/>
+            <line class="gl" x1="40" y1="245" x2="345" y2="245"/><line class="gl" x1="40" y1="210" x2="345" y2="210"/>
+            <line class="gl" x1="40" y1="175" x2="345" y2="175"/><line class="gl" x1="40" y1="140" x2="345" y2="140"/>
+            <line class="gl" x1="40" y1="105" x2="345" y2="105"/><line class="gl" x1="40" y1="70"  x2="345" y2="70"/>
+            <line class="gl" x1="40" y1="35"  x2="345" y2="35"/>
+          </g>
+          <polygon class="region" points="40,280 40,35 203.3,198.3"/>
+          <line class="lineA" x1="40" y1="35" x2="285" y2="280"/>
+          <line class="lineB" x1="40" y1="280" x2="320" y2="140"/>
+          <path class="ax" d="M40 292V22M28 280H350"/>
+          <path class="ax" d="M34 30L40 20L46 30M342 274L352 280L342 286"/>
+          <text class="tick" x="34" y="296" text-anchor="end">0</text>
+          <text class="tick" x="145" y="296" text-anchor="middle">3</text>
+          <text class="tick" x="250" y="296" text-anchor="middle">6</text>
+          <text class="tick" x="34" y="249" text-anchor="end">2</text>
+          <text class="tick" x="34" y="144" text-anchor="end">5</text>
+          <text class="tick" x="34" y="39" text-anchor="end">7</text>
+          <text class="tick" x="346" y="268" text-anchor="end">x</text>
+          <text class="tick" x="52" y="26">y</text>
+          <text class="lbl lblA" x="236" y="132">x + y ≤ 7</text>
+          <text class="lbl lblB" x="262" y="168">y ≥ ½x</text>
+          <circle class="dot" cx="203.3" cy="198.3" r="4.5"/>
+          <text class="dotlbl" x="212" y="214">(14/3, 7/3)</text>
+          <text class="lbl lblA" x="62" y="120">HP</text>
+        </svg>
+        <figcaption><b>HP</b> = himpunan penyelesaian. Garis putus-putus dan garis penuh adalah batas daerah; titik pojok didapat dari perpotongan dua garis.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="profil">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Profil</p>
+        <h2>Praktikan</h2>
+      </div>
+      <div class="profile">
+        <div class="id-card">
+          <div class="avatar" aria-hidden="true">B</div>
+          <div>
+            <h3>Barirotul Munawaroh</h3>
+            <p class="nim">NIM 25002926003</p>
+          </div>
+          <p>Calon guru matematika, Universitas Muhammadiyah Jember.</p>
+        </div>
+        <div class="facts">
+          <dl>
+            <div class="fact"><dt>Nama</dt><dd>Barirotul Munawaroh</dd></div>
+            <div class="fact"><dt>NIM</dt><dd class="mono">25002926003</dd></div>
+            <div class="fact"><dt>Perguruan Tinggi</dt><dd>Universitas Muhammadiyah Jember</dd></div>
+            <div class="fact"><dt>Sekolah PPL</dt><dd>SMA Muhammadiyah 3 Jember</dd></div>
+            <div class="fact"><dt>Kegiatan</dt><dd>Praktik Pengalaman Lapangan (PPL), Praktik Mengajar Mandiri</dd></div>
+            <div class="fact"><dt>Materi</dt><dd>Sistem Pertidaksamaan Linear Dua Variabel (SPTLDV), Siklus 2 sampai 4</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="dokumen">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Dokumen Rancangan</p>
+        <h2>Tiga Modul Ajar Terbaik</h2>
+        <p>Satu modul untuk setiap siklus. Semua dokumen terbuka di Google Docs.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="symbol" aria-hidden="true">y=</div>
+          <span class="tag">Siklus 2 · Prasyarat</span>
+          <h3>Modul Ajar Prasyarat SPTLDV</h3>
+          <p>Menyegarkan persamaan garis lurus, menggambar grafik, dan pertidaksamaan linear satu variabel.</p>
+          <a class="btn btn-primary" href="https://docs.google.com/document/d/1vN0AjsUb4e93xdRTbl4w1M9eWkcaZUBn/edit?usp=drive_link&ouid=112170666445576203786&rtpof=true&sd=true" target="_blank" rel="noopener">
+            Buka Modul
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </article>
+        <article class="card">
+          <div class="symbol" aria-hidden="true">≤</div>
+          <span class="tag">Siklus 3 · Materi Inti</span>
+          <h3>Modul Ajar Materi Inti SPTLDV</h3>
+          <p>Menentukan daerah penyelesaian satu pertidaksamaan dan irisan daerah pada sistem pertidaksamaan.</p>
+          <a class="btn btn-primary" href="https://docs.google.com/document/d/1tpfm4BETdm-lX6xzMQp_Wut7FI-tGY_c/edit?usp=drive_link&ouid=112170666445576203786&rtpof=true&sd=true" target="_blank" rel="noopener">
+            Buka Modul
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </article>
+        <article class="card">
+          <div class="symbol" aria-hidden="true">Σ</div>
+          <span class="tag">Siklus 4 · Kontekstual</span>
+          <h3>Modul Ajar Kontekstual SPTLDV</h3>
+          <p>Menyusun model matematika dari masalah nyata, lalu menafsirkan daerah penyelesaiannya.</p>
+          <a class="btn btn-primary" href="https://docs.google.com/document/d/1pwfg0uhcLxnJfnAzj58rTvLi7rkfmQES/edit?usp=drive_link&ouid=112170666445576203786&rtpof=true&sd=true" target="_blank" rel="noopener">
+            Buka Modul
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="video">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Video Pelaksanaan</p>
+        <h2>Rekaman Mengajar Mandiri</h2>
+        <p>Tiga video pelaksanaan pembelajaran, satu untuk setiap siklus.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="symbol" aria-hidden="true">▶</div>
+          <span class="tag">Siklus 2 · Prasyarat</span>
+          <h3>Video Mengajar Siklus 2</h3>
+          <p>Pembelajaran materi prasyarat SPTLDV.</p>
+          <a class="btn btn-ghost" href="https://youtu.be/b2qTGH_2rbA?si=kb2vtOGV_xaw9a4O" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Tonton di YouTube
+          </a>
+        </article>
+        <article class="card">
+          <div class="symbol" aria-hidden="true">▶</div>
+          <span class="tag">Siklus 3 · Materi Inti</span>
+          <h3>Video Mengajar Siklus 3</h3>
+          <p>Pembelajaran materi inti SPTLDV.</p>
+          <a class="btn btn-ghost" href="https://youtu.be/Jk9S8d85tS8?si=d0xNt7CRPtOTxKxA" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Tonton di YouTube
+          </a>
+        </article>
+        <article class="card">
+          <div class="symbol" aria-hidden="true">▶</div>
+          <span class="tag">Siklus 4 · Kontekstual</span>
+          <h3>Video Mengajar Siklus 4</h3>
+          <p>Pembelajaran SPTLDV dengan pendekatan kontekstual.</p>
+          <a class="btn btn-ghost" href="https://youtu.be/GexHiArI7mQ?si=IObt10VGYzfL0m6O" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            Tonton di YouTube
+          </a>
+        </article>
+      </div>
+      <div class="channel">
+        <p>Semua video diunggah di channel YouTube @smamgappgmatematikaunmuh</p>
+        <a class="btn" href="https://www.youtube.com/@smamgappgmatematikaunmuh" target="_blank" rel="noopener">Kunjungi Channel</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="refleksi">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Refleksi dan Analisis</p>
+        <h2>Dari Prasyarat ke Konteks</h2>
+        <p>Perkembangan siswa dianalisis dengan kerangka STAR: Situasi, Tantangan, Aksi, Refleksi.</p>
+      </div>
+
+      <div class="path" aria-label="Alur perkembangan siswa">
+        <div class="step">
+          <span class="tag">Siklus 2</span>
+          <h3>Menyiapkan</h3>
+          <p>Siswa menguatkan konsep garis lurus, grafik, dan pertidaksamaan satu variabel.</p>
+        </div>
+        <div class="step">
+          <span class="tag">Siklus 3</span>
+          <h3>Memahami prosedur</h3>
+          <p>Siswa menentukan daerah penyelesaian sistem dengan langkah yang runtut.</p>
+        </div>
+        <div class="step">
+          <span class="tag">Siklus 4</span>
+          <h3>Menerapkan dan menafsirkan</h3>
+          <p>Siswa memodelkan masalah nyata dan memaknai hasilnya.</p>
+        </div>
+      </div>
+
+      <article class="cycle">
+        <div class="cycle-head"><h3>Siklus 2</h3><span class="eyebrow">Materi prasyarat</span></div>
+        <div class="star">
+          <div class="cell"><span class="k">S</span><h4>Situasi</h4><p>Siswa akan masuk SPTLDV. Konsep persamaan garis lurus, grafik, dan pertidaksamaan linear satu variabel perlu disegarkan lebih dulu.</p></div>
+          <div class="cell"><span class="k">T</span><h4>Tantangan</h4><p>Kesiapan siswa tidak merata. Sebagian ragu menentukan titik potong sumbu dan menggambar garis.</p></div>
+          <div class="cell"><span class="k">A</span><h4>Aksi</h4><p>Modul disusun dengan pengecekan awal, contoh bertahap, latihan menggambar garis, dan umpan balik langsung.</p></div>
+          <div class="cell"><span class="k">R</span><h4>Refleksi</h4><p>Siswa lebih siap menggambar garis dan membaca grafik. Waktu latihan perlu ditambah, dan hasil pengecekan awal menjadi dasar Siklus 3.</p></div>
+        </div>
+      </article>
+
+      <article class="cycle">
+        <div class="cycle-head"><h3>Siklus 3</h3><span class="eyebrow">Materi inti</span></div>
+        <div class="star">
+          <div class="cell"><span class="k">S</span><h4>Situasi</h4><p>Siswa mempelajari daerah penyelesaian pertidaksamaan linear dua variabel dan sistemnya.</p></div>
+          <div class="cell"><span class="k">T</span><h4>Tantangan</h4><p>Menentukan arah arsiran, memilih garis penuh atau putus-putus, dan mencari irisan dua daerah atau lebih.</p></div>
+          <div class="cell"><span class="k">A</span><h4>Aksi</h4><p>Langkah baku: gambar garis batas, uji titik, arsir daerah, tentukan irisan. Siswa berlatih berpasangan dan saling memeriksa.</p></div>
+          <div class="cell"><span class="k">R</span><h4>Refleksi</h4><p>Prosedur mulai lancar. Kesalahan tersisa pada tanda pertidaksamaan dan jenis garis. Siswa perlu melihat kegunaan materi, sehingga Siklus 4 dibuat kontekstual.</p></div>
+        </div>
+      </article>
+
+      <article class="cycle">
+        <div class="cycle-head"><h3>Siklus 4</h3><span class="eyebrow">Pendekatan kontekstual</span></div>
+        <div class="star">
+          <div class="cell"><span class="k">S</span><h4>Situasi</h4><p>Siswa sudah memahami prosedur dan perlu melihat SPTLDV dipakai pada persoalan sehari-hari.</p></div>
+          <div class="cell"><span class="k">T</span><h4>Tantangan</h4><p>Mengubah soal cerita menjadi model matematika: menentukan variabel, menulis kendala, lalu menafsirkan daerah penyelesaian.</p></div>
+          <div class="cell"><span class="k">A</span><h4>Aksi</h4><p>Masalah nyata seperti kapasitas, anggaran, dan produksi dibahas dalam kelompok: definisikan variabel, tulis kendala, gambar, tafsirkan.</p></div>
+          <div class="cell"><span class="k">R</span><h4>Refleksi</h4><p>Pembelajaran lebih bermakna dan diskusi lebih aktif. Pemodelan tetap menjadi bagian tersulit, jadi perlu lebih banyak contoh bertahap.</p></div>
+        </div>
+      </article>
+
+      <div class="summary">
+        <h3>Kesimpulan dan Tindak Lanjut</h3>
+        <ul>
+          <li>Materi prasyarat yang dikuatkan lebih dulu membuat siswa siap masuk ke daerah penyelesaian.</li>
+          <li>Langkah baku dan latihan berpasangan membantu siswa mengerjakan sistem pertidaksamaan secara runtut.</li>
+          <li>Konteks nyata menaikkan keterlibatan siswa, tetapi pemodelan perlu pendampingan lebih lama.</li>
+          <li>Rencana berikutnya: tambah contoh pemodelan bertahap dan soal penafsiran hasil.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Barirotul Munawaroh</b><br><span>NIM 25002926003</span></div>
+    <div><span>Universitas Muhammadiyah Jember<br>PPL di SMA Muhammadiyah 3 Jember</span></div>
+  </div>
+</footer>
+
+</body></html>
